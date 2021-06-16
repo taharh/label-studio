@@ -60,7 +60,7 @@ stages:
           - TASK_CREATED
           - ANNOTATION_UPDATED
         headers:
-          - Autorization: "token 123456789"
+          Autorization: "token 123456789"
     response:
       status_code: 200
   - name: Delete webhook
