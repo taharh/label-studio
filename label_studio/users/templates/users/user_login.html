@@ -1,8 +1,11 @@
 {% extends 'users/user_base.html' %}
 
 {% block user_content %}
+<meta name="google-signin-client_id" content="390060105857-ab7u38b0vecfhe3t3a5d0dnonvr1c4r3.apps.googleusercontent.com">
+
   <form id="login-form" action="{% url 'user-login' %}{% if next %}?next={{ next }}{% endif %}" method="post">
     {% csrf_token %}
+    
     <p><input type="text" class="ls-input" name="email" id="email" placeholder="Email" value="{{ form.data.email }}"></p>
     <p><input type="password" class="ls-input" name="password" id="password" placeholder="Password"></p>
     {% if form.non_field_errors %}
@@ -13,6 +16,16 @@
       {% endfor %}
     {% endif %}
     <p><button type="submit" aria-label="Log In" class="ls-button ls-button_look_primary">Log in</button></p>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
   </form>
-
+  <script>
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  }
+  </script>
+  
 {% endblock %}

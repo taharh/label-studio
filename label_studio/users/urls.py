@@ -16,10 +16,11 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
 
     # Authentication
-    path('user/login/', views.user_login, name='user-login'),
+    #path('user/login/', views.user_login, name='user-login'),
     path('user/signup/', views.user_signup, name='user-signup'),
     path('user/account/', views.user_account, name='user-account'),
     url(r'^logout/?$', views.logout, name='logout'),
+    path('user/', include('allauth.urls'),name='user-login'),
 
     # avatars
     re_path(r'^data/' + settings.AVATAR_PATH + '/(?P<path>.*)$', serve,

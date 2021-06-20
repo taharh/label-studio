@@ -122,6 +122,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',   # <--
+       # <--
+ 
+    'allauth',   # <--
+    'allauth.account',   # <--
+    'allauth.socialaccount',   # <--
+    'allauth.socialaccount.providers.google',   # <--
 
     'drf_yasg',
     'corsheaders',
@@ -204,11 +211,14 @@ ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = [
     'rules.permissions.ObjectPermissionBackend',
-    'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 USE_USERNAME_FOR_LOGIN = False
 
-DISABLE_SIGNUP_WITHOUT_LINK = get_bool_env('DISABLE_SIGNUP_WITHOUT_LINK', False)
+SITE_ID = 1
+
+DISABLE_SIGNUP_WITHOUT_LINK = get_bool_env('DISABLE_SIGNUP_WITHOUT_LINK', True)
 
 # Password validation:
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

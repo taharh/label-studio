@@ -42,6 +42,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    #path('user/', include('allauth.urls')),
     re_path(r'^$', views.main, name='main'),
     re_path(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)),
     re_path(r'^label-studio-frontend/(?P<path>.*)$', serve, kwargs={'document_root': settings.EDITOR_ROOT, 'show_indexes': True}),
@@ -80,6 +81,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('django-rq/', include('django_rq.urls')),
+    
     re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
