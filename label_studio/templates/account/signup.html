@@ -1,4 +1,4 @@
-{% extends 'users/user_base.html' %}
+{% extends 'account/base.html' %}
 
 {% block user_content %}
 
@@ -32,9 +32,6 @@
       {% endfor %}
     {% endif %}
     <p><button type="submit" aria-label="Create Account" class="ls-button ls-button_look_primary">Create Account</button></p>
-     <p><button type="submit"  class="ls-button ls-button_look_primary">
-     {% include "socialaccount/snippets/provider_list.html" with process="login" %}</button></p>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
   </form>
 
 {% endblock %}

@@ -27,6 +27,8 @@ from drf_yasg.views import get_schema_view
 from rest_framework.permissions import AllowAny
 
 from core import views
+from organizations import api
+
 
 handler500 = 'core.views.custom_500'
 
@@ -42,7 +44,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    #path('user/', include('allauth.urls')),
+    #path('accounts/', include('allauth.urls')),
     re_path(r'^$', views.main, name='main'),
     re_path(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico', permanent=True)),
     re_path(r'^label-studio-frontend/(?P<path>.*)$', serve, kwargs={'document_root': settings.EDITOR_ROOT, 'show_indexes': True}),
@@ -81,6 +83,12 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('django-rq/', include('django_rq.urls')),
+    #path('people/', include('organizations.urls')),
+    #path('api/organizations/', include((_api_urlpattens, 'organizations'), namespace='api')),
+
+    # invite
+    #path('api/invite', api.OrganizationInviteAPI.as_view(), name='organization-reset-token'),
+    #path('api/invite/reset-token', api.OrganizationResetTokenAPI.as_view(), name='organization-reset-token'),
     
     re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
