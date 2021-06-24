@@ -17,7 +17,6 @@ db/
 logfile
 env/
 venv/
-.venv
 .vscode
 # web/static
 
