@@ -1,7 +1,12 @@
 {% extends 'users/user_base.html' %}
-
+{% load socialaccount %}
 {% block user_content %}
 
+<style>
+  a, a:visited, a:hover, a:active {
+    color: inherit;
+  }
+  </style>
   <form id="signup-form" action="{% url 'user-signup' %}?{% if next %}&next={{ next }}{% endif %}{% if token %}&token={{ token }}{% endif %}" method="post">
     {% csrf_token %}
     <div>
@@ -32,9 +37,8 @@
       {% endfor %}
     {% endif %}
     <p><button type="submit" aria-label="Create Account" class="ls-button ls-button_look_primary">Create Account</button></p>
-     <p><button type="submit"  class="ls-button ls-button_look_primary">
-     {% include "socialaccount/snippets/provider_list.html" with process="login" %}</button></p>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <button type="submit"  class="ls-button ls-button_look_primary"><a href="{% provider_login_url 'google' %}" class="btn btn-default" role="button" aria-pressed="true">Sign up with Google</a>
+    </button>
   </form>
 
 {% endblock %}
